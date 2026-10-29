@@ -1,0 +1,20 @@
+// Contrato compartido entre el cliente y el servidor.
+syntax = "proto3";
+
+package monitoreo;
+
+// Una solicitud produce una secuencia de respuestas: streaming del servidor.
+service MonitorServidor {
+  // "stream" en la respuesta indica streaming del servidor: 1 solicitud, N reportes.
+  rpc Monitorear (SolicitudMonitoreo) returns (stream ReporteEstado);
+}
+
+// La llamada necesita un mensaje de solicitud, aunque no lleve parámetros.
+message SolicitudMonitoreo {}
+
+// Cada mensaje del stream contiene estas tres métricas de la máquina servidora.
+message ReporteEstado {
+  double cpu_porcentaje = 1;
+  double ram_disponible_mb = 2;
+  double disco_libre_gb = 3;
+}

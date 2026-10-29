@@ -1,0 +1,19 @@
+// Contrato compartido: protoc genera los mensajes y stubs de Python desde aquí.
+syntax = "proto3";
+
+package temperaturas;
+
+// Una solicitud produce una sola respuesta: patron unario.
+service ConversorTemperatura {
+  // Sin "stream": una solicitud y una respuesta por llamada.
+  rpc Convertir (SolicitudTemperatura) returns (RespuestaTemperatura);
+}
+
+message SolicitudTemperatura {
+  // double admite decimales; 1 es el identificador del campo en el protocolo.
+  double celsius = 1;
+}
+
+message RespuestaTemperatura {
+  double fahrenheit = 1;
+}

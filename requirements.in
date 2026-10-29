@@ -1,0 +1,5 @@
+# Dependencias directas. requirements.txt fija las versiones utilizadas.
+grpcio
+grpcio-tools
+protobuf
+psutil
